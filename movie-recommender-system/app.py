@@ -45,7 +45,7 @@ def recommend(movie):
 st.title("🎬 Movie Recommender System")
 
 selected_movie = st.selectbox(
-    "Which movie would you like to get recommentions for?",
+    "Which movie would you like to get recommentions for ?",
     movies['title'],
 )
 
@@ -56,3 +56,6 @@ if st.button("Recommend", type="primary"):
         with cols[i]:
             st.image(poster_url, use_container_width=True)
             st.caption(title)
+            trailer_query = f"{title} official trailer"
+            trailer_url = f"https://www.youtube.com/results?search_query={trailer_query.replace(' ', '+')}"
+            st.markdown(f"[🎞️watch trailer]({trailer_url})",unsafe_allow_html=True)
