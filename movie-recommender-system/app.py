@@ -3,11 +3,15 @@ import pandas as pd
 import pickle
 import requests
 import warnings
+import os
 
 warnings.filterwarnings('ignore')
 # Load data
-movies_list_dict = pickle.load(open('new_df_dict.pkl', 'rb'))
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+
+if not os.path.exists('new_df_dict.pkl') or not os.path.exists('similarity.pkl'):
+    raise FileNotFoundError("Required files not found. Please ensure 'new_df_dict.pkl' and 'similarity.pkl' are in the current directory.")
+movies_list_dict = pickle.load(open('D:/dsprojects/recommender/movie-recommender-system/new_df_dict.pkl', 'rb'))
+similarity = pickle.load(open('D:/dsprojects/recommender/movie-recommender-system/similarity.pkl', 'rb'))
 movies = pd.DataFrame(movies_list_dict)
 
 # TMDb API Key (replace with your key)
