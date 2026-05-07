@@ -10,8 +10,8 @@ warnings.filterwarnings('ignore')
 
 if not os.path.exists('new_df_dict.pkl') or not os.path.exists('similarity.pkl'):
     raise FileNotFoundError("Required files not found. Please ensure 'new_df_dict.pkl' and 'similarity.pkl' are in the current directory.")
-movies_list_dict = pickle.load(open('D:/dsprojects/recommender/movie-recommender-system/new_df_dict.pkl', 'rb'))
-similarity = pickle.load(open('D:/dsprojects/recommender/movie-recommender-system/similarity.pkl', 'rb'))
+movies_list_dict = pickle.load(open('new_df_dict.pkl', 'rb'))
+similarity = pickle.load(open('similarity.pkl', 'rb'))
 movies = pd.DataFrame(movies_list_dict)
 
 # TMDb API Key (replace with your key)
@@ -58,7 +58,7 @@ if st.button("Recommend", type="primary"):
     cols = st.columns(5)
     for i, (title, poster_url) in enumerate(recommendations):
         with cols[i]:
-            st.image(poster_url, use_container_width=True)
+            st.image(poster_url, width='stretch')
             st.caption(title)
             trailer_query = f"{title} official trailer"
             trailer_url = f"https://www.youtube.com/results?search_query={trailer_query.replace(' ', '+')}"
